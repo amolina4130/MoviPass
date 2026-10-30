@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anahi Molina | Portafolio</title>
+  <meta name="description" content="Portafolio de Anahi Molina, estudiante de Ingeniería de Software. Módulo de selección de asientos de MoviPass.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08141f; --bg-2: #0e2a3a;
+      --card: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.12);
+      --text: #eaf6fb; --muted: #9fbccb;
+      --accent: #2dd4bf; --accent-2: #38bdf8; --accent-3: #f472b6;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    [data-theme="light"] {
+      --bg: #f4fbfb; --bg-2: #dff5f3;
+      --card: rgba(255,255,255,0.9); --border: rgba(13,148,136,0.2);
+      --text: #12303a; --muted: #4f7280;
+      --accent: #0d9488; --accent-2: #0284c7; --accent-3: #db2777;
+      --shadow: 0 10px 30px rgba(13,148,136,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 15% 10%, var(--bg-2), var(--bg) 55%);
+      background-attachment: fixed;
+      color: var(--text); line-height: 1.7;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 6vw; background: var(--card);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 700; font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .links { display: flex; gap: 22px; align-items: center; }
+    .links a { color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
+    .links a:hover { color: var(--accent); }
+    #theme { background: var(--card); border: 1px solid var(--border); color: var(--text);
+      width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+
+    .hero { min-height: 82vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 60px 6vw; }
+    .avatar { width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 2.8rem; font-weight: 700; color: #fff; margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px var(--card), 0 0 50px rgba(45,212,191,0.4);
+      animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero h1 { font-size: clamp(2.3rem, 7vw, 3.8rem); line-height: 1.15; margin-bottom: 12px; }
+    .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { color: var(--muted); max-width: 600px; font-size: 1.05rem; }
+    .buttons { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 12px 28px; border-radius: 999px; text-decoration: none; font-weight: 600;
+      font-size: 0.95rem; transition: transform 0.2s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #04222a;
+      box-shadow: 0 8px 22px rgba(45,212,191,0.35); }
+    .btn.ghost { border: 1px solid var(--border); color: var(--text); background: var(--card); }
+
+    main { max-width: 900px; margin: 0 auto; padding: 0 6vw 60px; }
+    section { padding: 50px 0 10px; }
+    h2 { font-size: 1.7rem; margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+    h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      padding: 24px; backdrop-filter: blur(10px); box-shadow: var(--shadow); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .item .icon { font-size: 1.7rem; margin-bottom: 6px; }
+    .item h3 { font-size: 1.02rem; color: var(--accent); }
+    .item p { color: var(--muted); font-size: 0.92rem; }
+    .muted { color: var(--muted); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 500;
+      background: rgba(45,212,191,0.14); color: var(--accent); border: 1px solid var(--border); }
+    .label { font-size: 0.85rem; color: var(--muted); margin: 14px 0 10px; }
+    .label:first-child { margin-top: 0; }
+
+    /* DEMO ASIENTOS */
+    .demo { display: grid; grid-template-columns: 1.3fr 1fr; gap: 22px; align-items: start; }
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+    .legend i { display: inline-block; width: 16px; height: 16px; border-radius: 5px; vertical-align: -3px; margin-right: 6px; }
+    .l-free { background: rgba(45,212,191,0.25); border: 1px solid var(--accent); }
+    .l-sel { background: var(--accent-2); }
+    .l-occ { background: rgba(128,128,128,0.45); }
+    .bus { border: 2px solid var(--border); border-radius: 26px 26px 14px 14px; padding: 16px 14px; background: rgba(255,255,255,0.03); }
+    .front { text-align: center; font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; letter-spacing: 1px; }
+    .row { display: grid; grid-template-columns: 22px repeat(2, 1fr) 18px repeat(2, 1fr); gap: 8px; margin-bottom: 8px; align-items: center; }
+    .row .n { font-size: 0.75rem; color: var(--muted); text-align: center; }
+    .seat { border: 1px solid var(--accent); background: rgba(45,212,191,0.18); color: var(--text);
+      border-radius: 8px; padding: 6px 0; font-size: 0.78rem; font-family: inherit; cursor: pointer; transition: transform 0.15s; }
+    .seat:hover:not(:disabled) { transform: scale(1.08); }
+    .seat.sel { background: var(--accent-2); border-color: var(--accent-2); color: #04222a; font-weight: 600; }
+    .seat:disabled { background: rgba(128,128,128,0.35); border-color: transparent; color: var(--muted); cursor: not-allowed; }
+    .summary h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .summary ul { list-style: none; padding: 0; margin: 10px 0; min-height: 28px; }
+    .summary li { display: flex; justify-content: space-between; font-size: 0.92rem; padding: 4px 0; border-bottom: 1px dashed var(--border); }
+    .total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.15rem; margin: 12px 0; }
+    .total span:last-child { color: var(--accent); }
+    .summary button { width: 100%; padding: 10px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font-family: inherit; font-weight: 600; cursor: pointer; }
+    .summary button:hover { border-color: var(--accent); }
+    .note { font-size: 0.8rem; color: var(--muted); margin-top: 14px; }
+
+    /* LINEA DE TIEMPO */
+    .timeline { border-left: 2px solid var(--border); padding-left: 26px; display: grid; gap: 18px; }
+    .step { position: relative; }
+    .step::before { content: ""; position: absolute; left: -35px; top: 7px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .step h3 { font-size: 1rem; }
+    .step p { color: var(--muted); font-size: 0.9rem; }
+
+    .contact { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contact a { flex: 1; min-width: 220px; text-decoration: none; color: var(--text);
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; transition: transform 0.2s, border-color 0.2s; }
+    .contact a:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .contact small { display: block; color: var(--muted); font-size: 0.8rem; }
+
+    footer { text-align: center; padding: 30px 20px 40px; color: var(--muted); font-size: 0.88rem; }
+    @media (max-width: 720px) { .demo { grid-template-columns: 1fr; } .links a { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Anahi Molina</div>
+    <div class="links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#aporte">Mi aporte</a>
+      <a href="#demo">Demo</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+      <button id="theme" title="Cambiar tema">🌙</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="avatar">A</div>
+    <h1>Hola, soy <span>Anahi Molina</span></h1>
+    <p>Estudiante de Ingeniería de Software en la Universidad Técnica de Ambato. Desarrollo interfaces y lógica del lado del cliente, y soy parte del comité de cambios de <b>MoviPass</b>.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#demo">Ver mi demo</a>
+      <a class="btn ghost" href="https://github.com/kmoyolema3929/MoviPass" target="_blank" rel="noopener">Proyecto MoviPass</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <div class="card">
+        <p>Soy desarrolladora del proyecto grupal <b>MoviPass</b>, una aplicación web para la gestión y venta de pasajes de transporte interprovincial en Ecuador. Me enfoco en construir pantallas claras y fáciles de usar, y en trabajar de forma ordenada con Git y control de cambios.</p>
+      </div>
+    </section>
+
+    <section id="aporte">
+      <h2>Mi aporte en MoviPass</h2>
+      <div class="grid">
+        <div class="card item">
+          <div class="icon">💺</div>
+          <h3>Selección de asientos</h3>
+          <p>Pantalla donde el usuario elige sus asientos: mapa del bus con asientos disponibles y ocupados, leyenda, selección con clic y resumen con el total a pagar.</p>
+        </div>
+        <div class="card item">
+          <div class="icon">🔐</div>
+          <h3>Perfiles y roles con RLS</h3>
+          <p>Base de datos de perfiles y roles del sistema, con políticas de seguridad a nivel de fila (RLS) en Supabase.</p>
+        </div>
+        <div class="card item">
+          <div class="icon">📋</div>
+          <h3>Comité de cambios</h3>
+          <p>Revisión de cambios y pull requests dentro del flujo Gitflow del equipo.</p>
+        </div>
+        <div class="card item">
+          <div class="icon">🧾</div>
+          <h3>Evidencias</h3>
+          <p>Documentación del avance de cada tarea con capturas, asociadas al issue correspondiente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <h2>Demo: selección de asientos</h2>
+      <div class="card">
+        <p class="muted" style="margin-bottom:16px;">Prueba una versión simplificada de la pantalla: elige asientos y mira cómo cambia el resumen.</p>
+        <div class="demo">
+          <div>
+            <div class="legend">
+              <span><i class="l-free"></i>Disponible</span>
+              <span><i class="l-sel"></i>Seleccionado</span>
+              <span><i class="l-occ"></i>Ocupado</span>
+            </div>
+            <div class="bus">
+              <div class="front">▲ FRENTE DEL BUS</div>
+              <div id="mapa"></div>
+            </div>
+          </div>
+          <div class="summary">
+            <h3>Resumen de tu selección</h3>
+            <p class="muted" style="font-size:0.85rem;">Quito → Guayaquil · Precio por asiento: $12.50</p>
+            <p class="muted" id="vacio" style="font-size:0.9rem; margin-top:10px;">Aún no has seleccionado asientos.</p>
+            <ul id="lista"></ul>
+            <div class="total"><span>Total a pagar</span><span id="total">$0.00</span></div>
+            <button id="limpiar" type="button">Limpiar selección</button>
+            <p class="note">Es una demostración con datos de ejemplo, no realiza compras reales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tecnologias">
+      <h2>Tecnologías</h2>
+      <div class="card">
+        <p class="label">Uso en el proyecto</p>
+        <div class="chips">
+          <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span>
+          <span class="chip">Bootstrap 5</span><span class="chip">Supabase</span><span class="chip">SQL</span>
+        </div>
+        <p class="label">Flujo de trabajo</p>
+        <div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Gitflow</span></div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <h2>Cómo construí la selección de asientos</h2>
+      <div class="card">
+        <div class="timeline">
+          <div class="step"><h3>1. Estructura base</h3><p>Página HTML con Bootstrap 5 como punto de partida.</p></div>
+          <div class="step"><h3>2. Leyenda y estilos del bus</h3><p>Colores para distinguir asientos disponibles, seleccionados y ocupados.</p></div>
+          <div class="step"><h3>3. Mapa de asientos</h3><p>Generación del mapa con asientos disponibles y ocupados.</p></div>
+          <div class="step"><h3>4. Selección con clic</h3><p>Cada asiento se puede marcar y desmarcar.</p></div>
+          <div class="step"><h3>5. Resumen y total a pagar</h3><p>Lista de asientos elegidos y cálculo automático del total.</p></div>
+          <div class="step"><h3>6. Evidencias y revisión</h3><p>Capturas del avance y fusión del cambio mediante pull request.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <div class="contact">
+        <a href="mailto:TU_CORREO">✉️ Correo<small>TU_CORREO</small></a>
+        <a href="https://github.com/TU_USUARIO" target="_blank" rel="noopener">💻 GitHub<small>github.com/TU_USUARIO</small></a>
+        <a href="https://github.com/kmoyolema3929/MoviPass" target="_blank" rel="noopener">🚌 Proyecto MoviPass<small>Repositorio del equipo</small></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Anahi Molina · Ingeniería de Software, UTA · Ambato, Ecuador</footer>
+
+  <script>
+    // Tema
+    const btn = document.getElementById("theme");
+    const root = document.documentElement;
+    let saved = null;
+    try { saved = localStorage.getItem("tema"); } catch (e) {}
+    if (saved === "light") { root.setAttribute("data-theme", "light"); btn.textContent = "☀️"; }
+    btn.addEventListener("click", () => {
+      const light = root.getAttribute("data-theme") === "light";
+      if (light) { root.removeAttribute("data-theme"); btn.textContent = "🌙"; }
+      else { root.setAttribute("data-theme", "light"); btn.textContent = "☀️"; }
+      try { localStorage.setItem("tema", light ? "dark" : "light"); } catch (e) {}
+    });
+
+    // Demo de asientos
+    const PRECIO = 12.5;
+    const FILAS = 10;
+    const OCUPADOS = new Set(["1A","2C","2D","4B","5A","5B","7C","8D","9A","10B"]);
+    const sel = new Set();
+    const mapa = document.getElementById("mapa");
+    const lista = document.getElementById("lista");
+    const vacio = document.getElementById("vacio");
+    const totalEl = document.getElementById("total");
+
+    function orden(a, b) {
+      const na = parseInt(a), nb = parseInt(b);
+      return na !== nb ? na - nb : a.slice(-1).localeCompare(b.slice(-1));
+    }
+
+    function dibujarMapa() {
+      mapa.innerHTML = "";
+      for (let f = 1; f <= FILAS; f++) {
+        const fila = document.createElement("div");
+        fila.className = "row";
+        const n = document.createElement("span");
+        n.className = "n"; n.textContent = f;
+        fila.appendChild(n);
+        ["A","B","","C","D"].forEach(col => {
+          if (col === "") { fila.appendChild(document.createElement("span")); return; }
+          const id = f + col;
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "seat"; b.textContent = id;
+          if (OCUPADOS.has(id)) {
+            b.disabled = true; b.setAttribute("aria-label", "Asiento " + id + " ocupado");
+          } else {
+            b.setAttribute("aria-label", "Asiento " + id + " disponible");
+            b.addEventListener("click", () => {
+              if (sel.has(id)) sel.delete(id); else sel.add(id);
+              b.classList.toggle("sel", sel.has(id));
+              resumen();
+            });
+          }
+          fila.appendChild(b);
+        });
+        mapa.appendChild(fila);
+      }
+    }
+
+    function resumen() {
+      const arr = [...sel].sort(orden);
+      lista.innerHTML = "";
+      arr.forEach(id => {
+        const li = document.createElement("li");
+        li.innerHTML = "<span>Asiento " + id + "</span><span>$" + PRECIO.toFixed(2) + "</span>";
+        lista.appendChild(li);
+      });
+      vacio.style.display = arr.length ? "none" : "block";
+      totalEl.textContent = "$" + (arr.length * PRECIO).toFixed(2);
+    }
+
+    document.getElementById("limpiar").addEventListener("click", () => {
+      sel.clear(); dibujarMapa(); resumen();
+    });
+
+    dibujarMapa();
+    resumen();
+  </script>
+</body>
+</html>
